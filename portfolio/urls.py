@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+import jobs.views
+import d3.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', jobs.views.home, name='home'),
+    path('d3', d3.views.home, name='home'),
+    path('d3/rounded_rect', d3.views.rounded_rect, name='rounded_rect'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
