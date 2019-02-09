@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="James Rhodes personal portfolio page">
     <meta name="author" content="James Rhodes - thanks to Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <title>Jimmy - d3 library</title>
+    <title>Jimblog</title>
 
     <!-- Bootstrap core CSS and font reference -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Roboto" rel="stylesheet">
@@ -27,7 +27,7 @@
     </style>
 
 </head>
-<body>
+<body class="bg-dark">
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-med">
         <a class="nav-logo" href="{% url 'home' %}">J</a>
@@ -53,40 +53,25 @@
     </nav>
 </header>
 
-<main role="main">
+<main role="main" class="bg-dark">
+    <div class="container">
+        <h1 class="text-center pt-3">Jimblog</h1>
+        <br />
+        <br />
+        <h2>Latest Blog Posts</h2>
+        <hr />
 
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">D3</h1>
-            <p class="lead text-muted">Data driven documents - My Library</p>
-            <p>
-                <!-- <a href="mailto:vincerhodes@gmail.com" class="btn btn-primary my-2">Contact Me</a> -->
-                <!-- <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
-            </p>
-        </div>
-    </section>
+            {% for blog in blogs.all %}
+                <div>
+                    <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+                    {{ blog.blog_date_pretty }}
+                    <br />
+                    <img class="img-fluid" src="{{ blog.blog_image.url }}" height="200" width="200"/>
+                    <p>{{ blog.summary }}</p>
+                </div>
+            {% endfor %}
 
-    <div class="album py-5 bg-dark">
-        <div class="container">
-            <div class="row">
-
-                {% for doc in d3s.all %}
-                    <div class="col-md-4">
-                        <a href="d3/{{ doc.d3_URL }}">
-                            <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top" src="{{ doc.d3_image.url }}" />
-                                <div class="card-body">
-                                    <p class="card-text">{{ doc.d3_summary }}</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-
-            </div>
-        </div>
     </div>
-
 </main>
 
 <footer class="text-muted">
