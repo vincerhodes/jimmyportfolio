@@ -7,7 +7,7 @@ import d3.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('jimmy', jobs.views.home, name='home'),
+    path('', jobs.views.home, name='home'),
     path('d3', d3.views.home, name='d3_home'),
     path('blog/', include('blog.urls')),
     path('d3/rounded_rect', d3.views.rounded_rect, name='rounded_rect'),
